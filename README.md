@@ -722,18 +722,6 @@ ccna-enterprise-campus-mega-lab/
     └── command-reference.md
 ```
 
----
-
-## Important Note on Publishing Configs
-
-Before uploading device configs, sanitize all sensitive values. Replace passwords, community strings, and usernames with placeholders:
-
-```
-username <redacted> secret <redacted>
-enable secret <redacted>
-snmp-server community <redacted> RO
-```
-
 Recommended additions to strengthen the repo:
 - Screenshots of `show ip ospf neighbor`, `show standby brief`, `show etherchannel summary`, `show ip nat translations`
 - WLC AP Summary and Client Summary screenshots
