@@ -59,8 +59,8 @@ ip dhcp pool Wi-Fi
 !
 ipv6 unicast-routing
 lldp run
-ip ftp username cisco
-ip ftp password cisco
+ip ftp username <REDACTED_FTP_USERNAME>
+ip ftp password <REDACTED_FTP_PASSWORD>
 ip ssh version 2
 !
 interface Loopback0

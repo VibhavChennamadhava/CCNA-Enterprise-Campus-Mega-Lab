@@ -1,0 +1,28 @@
+graph TD
+    ISP[Internet / ISP] --> R1[R1 Edge Router]
+    R1 --> CSW1[CSW1 Core]
+    R1 --> CSW2[CSW2 Core]
+    CSW1 --- CSW2
+
+    CSW1 --> DSWA1[DSW-A1]
+    CSW1 --> DSWA2[DSW-A2]
+    CSW2 --> DSWB1[DSW-B1]
+    CSW2 --> DSWB2[DSW-B2]
+
+    DSWA1 --> ASWA1[ASW-A1]
+    DSWA1 --> ASWA2[ASW-A2]
+    DSWA2 --> ASWA3[ASW-A3]
+
+    DSWB1 --> ASWB1[ASW-B1]
+    DSWB1 --> ASWB2[ASW-B2]
+    DSWB2 --> ASWB3[ASW-B3]
+
+    ASWA1 --> LWAPA[LWAP-A]
+    ASWB1 --> LWAPB[LWAP-B]
+    DSWA1 --> WLC1[WLC1]
+    ASWB3 --> SRV1[SRV1]
+
+    ASWA2 --> PCA[Office A PCs/Phones]
+    ASWB2 --> PCB[Office B PCs/Phones]
+    LWAPA --> WC1[Wireless Clients]
+    LWAPB --> WC2[Wireless Clients]
