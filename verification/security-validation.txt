@@ -1,0 +1,44 @@
+# Security Validation
+
+Purpose:
+Validate access-layer security, device management security, and traffic filtering controls.
+
+Port security commands:
+show port-security
+show port-security interface f0/1
+show port-security address
+
+DHCP snooping commands:
+show ip dhcp snooping
+show ip dhcp snooping binding
+
+Dynamic ARP Inspection commands:
+show ip arp inspection
+show ip arp inspection interfaces
+
+ACL commands:
+show access-lists
+show running-config interface vlan 10
+
+SSH commands:
+show ip ssh
+show users
+show running-config | section line vty
+
+Expected controls:
+- Port security enabled on access-facing ports.
+- Sticky MAC learning enabled.
+- Restrict violation mode configured.
+- Phone + PC ports allow maximum 2 MAC addresses.
+- LWAP/server ports allow default maximum 1 MAC address.
+- DHCP snooping enabled globally and per access VLAN.
+- Uplink ports trusted for DHCP snooping and DAI.
+- DAI enabled on access VLANs with validation checks.
+- OfficeA_to_OfficeB ACL allows ICMP from Office A PCs to Office B PCs but denies other IP traffic between those subnets.
+- SSH is enabled and VTY lines allow SSH only.
+
+Evidence to paste:
+<PASTE show port-security OUTPUT HERE>
+<PASTE show ip dhcp snooping OUTPUT HERE>
+<PASTE show ip arp inspection OUTPUT HERE>
+<PASTE show access-lists OUTPUT HERE>

@@ -1,0 +1,37 @@
+# HSRP Verification
+
+Purpose:
+Validate redundant default gateways on Office A and Office B distribution switches.
+
+Commands to run:
+show standby brief
+show standby vlan 10
+show standby vlan 20
+show standby vlan 30
+show standby vlan 40
+show standby vlan 99
+
+Expected active gateway design:
+Office A:
+- DSW-A1 active for VLAN 99 and VLAN 10
+- DSW-A2 active for VLAN 20 and VLAN 40
+
+Office B:
+- DSW-B1 active for VLAN 99 and VLAN 10
+- DSW-B2 active for VLAN 20 and VLAN 30
+
+Expected virtual gateways:
+Office A:
+- VLAN 99: 10.0.0.1
+- VLAN 10: 10.1.0.1
+- VLAN 20: 10.2.0.1
+- VLAN 40: 10.6.0.1
+
+Office B:
+- VLAN 99: 10.0.0.17
+- VLAN 10: 10.3.0.1
+- VLAN 20: 10.4.0.1
+- VLAN 30: 10.5.0.1
+
+Evidence to paste:
+<PASTE show standby brief OUTPUT HERE>

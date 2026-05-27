@@ -1,0 +1,29 @@
+# EtherChannel Verification
+
+Purpose:
+Validate Layer 2 and Layer 3 EtherChannel bundles.
+
+Commands to run:
+show etherchannel summary
+show interfaces port-channel 1
+show interfaces trunk
+show ip interface brief
+
+Expected results:
+Office A distribution:
+- DSW-A1 <-> DSW-A2 uses PAgP desirable.
+- Port-channel1 should show Layer 2 status such as Po1(SU).
+- Member links should show bundled status such as (P).
+
+Office B distribution:
+- DSW-B1 <-> DSW-B2 uses LACP active.
+- Port-channel1 should show Layer 2 status such as Po1(SU).
+- Member links should show bundled status such as (P).
+
+Core:
+- CSW1 <-> CSW2 uses Layer 3 EtherChannel.
+- Port-channel1 should show routed/in-use status such as Po1(RU).
+- Port-channel interface should have IP addresses 10.0.0.41/30 and 10.0.0.42/30.
+
+Evidence to paste:
+<PASTE show etherchannel summary OUTPUT HERE>

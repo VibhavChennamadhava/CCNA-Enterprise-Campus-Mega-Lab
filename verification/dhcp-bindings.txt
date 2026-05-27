@@ -1,0 +1,36 @@
+# DHCP Verification
+
+Purpose:
+Validate centralized DHCP on R1 and DHCP relay through distribution switch SVIs.
+
+Commands to run on R1:
+show ip dhcp pool
+show ip dhcp binding
+show running-config | section dhcp
+
+Commands to run on distribution switches:
+show running-config interface vlan 10
+show running-config interface vlan 20
+show running-config interface vlan 30
+show running-config interface vlan 40
+show running-config interface vlan 99
+
+Commands to run on access switches:
+show ip dhcp snooping
+show ip dhcp snooping binding
+
+Client-side commands:
+ipconfig
+ipconfig /renew
+
+Expected results:
+- Clients receive IP addresses from the correct VLAN subnet.
+- Default gateway should match the HSRP VIP.
+- DNS server should be 10.5.0.4.
+- Domain name should be jeremysitlab.com.
+- DHCP relay should point to R1 at 10.0.0.76.
+- DHCP snooping bindings should appear for DHCP clients.
+
+Evidence to paste:
+<PASTE show ip dhcp binding OUTPUT HERE>
+<PASTE CLIENT ipconfig OUTPUT HERE>

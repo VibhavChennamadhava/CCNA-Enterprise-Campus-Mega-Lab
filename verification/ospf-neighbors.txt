@@ -1,0 +1,25 @@
+# OSPF Neighbor Verification
+
+Purpose:
+Validate that R1, core switches, and distribution switches have formed OSPF adjacencies in Area 0.
+
+Commands to run:
+show ip ospf neighbor
+show ip ospf interface brief
+show ip route ospf
+show ip protocols
+
+Expected high-level results:
+- R1 should form neighbors with CSW1 and CSW2.
+- CSW1 should form neighbors with R1, CSW2, and all distribution switches.
+- CSW2 should form neighbors with R1, CSW1, and all distribution switches.
+- Distribution switches should form neighbors with CSW1, CSW2, and their local distribution peer over VLAN 99.
+- User/data SVIs should be passive and should not form unnecessary OSPF adjacencies.
+- OSPF routes should appear with code O, O IA, or O*E2 depending on route type.
+
+Expected default route:
+O*E2 0.0.0.0/0 learned from R1 on internal Layer 3 switches.
+
+Evidence to paste:
+<PASTE show ip ospf neighbor OUTPUT HERE>
+<PASTE show ip route ospf OUTPUT HERE>

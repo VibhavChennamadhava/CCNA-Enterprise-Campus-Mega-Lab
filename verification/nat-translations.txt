@@ -1,0 +1,29 @@
+# NAT and PAT Verification
+
+Purpose:
+Validate static NAT for SRV1 and dynamic PAT for internal user subnets.
+
+Commands to run on R1:
+show ip nat translations
+show ip nat statistics
+show access-lists
+show running-config | include ip nat
+show ip route 0.0.0.0
+
+Expected NAT configuration:
+- SRV1 10.5.0.4 statically maps to 203.0.113.113.
+- Internal user subnets are matched by ACL 2.
+- NAT pool POOL1 uses 203.0.113.200 through 203.0.113.207.
+- NAT overload is configured for internal user traffic.
+- R1 has primary and floating static default routes.
+
+Expected internal PAT subnets:
+- 10.1.0.0/24
+- 10.2.0.0/24
+- 10.3.0.0/24
+- 10.4.0.0/24
+- 10.6.0.0/24
+
+Evidence to paste:
+<PASTE show ip nat translations OUTPUT HERE>
+<PASTE show ip nat statistics OUTPUT HERE>
