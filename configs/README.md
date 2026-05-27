@@ -1,7 +1,27 @@
-# Config files
+# Config Export and Sanitization Guide
 
-Generated sanitized configuration files for the CCNA Enterprise Campus Mega Lab.
+## Export Method
+Export each device running configuration directly from CLI using:
+- `show running-config`
+- Copy/paste to a text file named `<DEVICE>-running-config.txt`
 
-- Replace placeholder secrets before using them as paste-ready configs.
-- Sticky secure MAC addresses are intentionally omitted to prevent Packet Tracer copied-device MAC conflicts.
-- Validate generated files against your actual `show running-config` outputs before treating them as exact exports.
+Store files in the correct folder:
+- `configs/routers/`
+- `configs/core-switches/`
+- `configs/distribution-switches/`
+- `configs/access-switches/`
+
+## Sanitization Rules
+Before publishing, replace all sensitive values with placeholders:
+- enable secrets
+- local user passwords/secrets
+- SNMP community strings
+- WPA/WPA2 PSKs
+- NTP authentication keys
+- FTP credentials
+- any private tokens or keys
+
+Example placeholder format:
+- `<REDACTED_ENABLE_SECRET>`
+- `<REDACTED_USER_SECRET>`
+- `<REDACTED_SNMP_STRING>`
