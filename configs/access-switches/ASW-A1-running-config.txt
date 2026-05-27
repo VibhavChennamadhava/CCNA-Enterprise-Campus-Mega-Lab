@@ -1,13 +1,10 @@
 !
-! CCNA Enterprise Campus Mega Lab - generated GitHub documentation config
-! Secrets are sanitized. Replace placeholders before pasting into Packet Tracer.
-! Sticky secure MAC addresses are intentionally omitted so copied devices can relearn current MACs.
 !
 version 15.2
-hostname ASW-A2
+hostname ASW-A1
 !
 enable secret <REDACTED_ENABLE_SECRET>
-username vibecs secret <REDACTED_USER_SECRET>
+username admin secret <REDACTED_USER_SECRET>
 !
 vtp mode client
 vtp domain JeremysITLab
@@ -17,7 +14,7 @@ spanning-tree mode rapid-pvst
 ip default-gateway 10.0.0.1
 !
 interface Vlan99
- ip address 10.0.0.5 255.255.255.240
+ ip address 10.0.0.4 255.255.255.240
  no shutdown
 !
 interface range GigabitEthernet0/1 - 2
@@ -35,7 +32,7 @@ ip arp inspection vlan 10,20,40,99
 ip arp inspection validate dst-mac src-mac ip
 !
 enable secret <REDACTED_ENABLE_SECRET>
-username vibecs secret <REDACTED_USER_SECRET>
+username admin secret <REDACTED_USER_SECRET>
 !
 no cdp run
 lldp run
@@ -72,21 +69,29 @@ ntp trusted-key 1
 ntp server 10.0.0.76 key 1
 !
 interface FastEthernet0/1
- description PC and IP Phone
+ description Lightweight AP
  switchport mode access
  switchport nonegotiate
- switchport access vlan 10
- switchport voice vlan 20
+ switchport access vlan 99
  spanning-tree portfast
  spanning-tree bpduguard enable
  switchport port-security
- switchport port-security maximum 2
  switchport port-security violation restrict
  switchport port-security mac-address sticky
  ip dhcp snooping limit rate 15
  no lldp transmit
 !
-interface range FastEthernet0/2 - 24
+interface FastEthernet0/2
+ description Trunk to WLC1
+ switchport trunk native vlan 99
+ switchport trunk allowed vlan 40,99
+ switchport mode trunk
+ switchport nonegotiate
+ spanning-tree portfast trunk
+ spanning-tree bpduguard enable
+ ip dhcp snooping limit rate 100
+!
+interface range FastEthernet0/3 - 24
  shutdown
 !
 end
