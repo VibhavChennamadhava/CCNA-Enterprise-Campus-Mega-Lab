@@ -1,7 +1,10 @@
-# Packet Tracer Artifact
+# Packet Tracer Lab Artifact
 
-Place the primary lab file here:
-- `ccna-enterprise-campus-mega-lab.pkt` (or `.pka` if used)
+`ccna-enterprise-campus-mega-lab.pkt` is the complete lab file used for this project. It contains:
 
-## Redistribution Note
-If this lab is derived from copyrighted training material, verify redistribution rights before publishing complete exercise files.
+- Full two-office campus topology
+- Edge, core, distribution, and access hierarchy
+- Configured routers and switches
+- WLC/LWAP wireless components
+- SRV1 services endpoint
+- IPv4 and IPv6 routing components used in the lab design

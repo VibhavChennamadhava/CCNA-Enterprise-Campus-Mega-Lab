@@ -1,28 +1,72 @@
-graph TD
-    ISP[Internet / ISP] --> R1[R1 Edge Router]
-    R1 --> CSW1[CSW1 Core]
-    R1 --> CSW2[CSW2 Core]
-    CSW1 --- CSW2
+flowchart TB
+    subgraph IEC[Internet / Edge / Core]
+      ISP[Internet / ISP] --> R1[R1]
+      R1 --> CSW1[CSW1]
+      R1 --> CSW2[CSW2]
+      CSW1 <-->|Port-channel1 L3\nPAgP desirable\n10.0.0.41/30-10.0.0.42/30| CSW2
+    end
 
-    CSW1 --> DSWA1[DSW-A1]
-    CSW1 --> DSWA2[DSW-A2]
-    CSW2 --> DSWB1[DSW-B1]
-    CSW2 --> DSWB2[DSW-B2]
+    subgraph OA[Office A]
+      DSWA1[DSW-A1]
+      DSWA2[DSW-A2]
+      ASWA1[ASW-A1]
+      ASWA2[ASW-A2]
+      ASWA3[ASW-A3]
+      WLC1[WLC1]
+      LWAP1[LWAP1]
+      PC1[PC1]
+      PC2[PC2]
+      PH1[Phone1]
+      PH2[Phone2]
+      LAP1[Laptop1]
 
-    DSWA1 --> ASWA1[ASW-A1]
-    DSWA1 --> ASWA2[ASW-A2]
-    DSWA2 --> ASWA3[ASW-A3]
+      DSWA1 <-->|Po1 L2 PAgP| DSWA2
+      DSWA1 --> ASWA1
+      DSWA1 --> ASWA2
+      DSWA2 --> ASWA3
+      DSWA2 --> ASWA1
+      DSWA2 --> ASWA2
 
-    DSWB1 --> ASWB1[ASW-B1]
-    DSWB1 --> ASWB2[ASW-B2]
-    DSWB2 --> ASWB3[ASW-B3]
+      ASWA1 --> WLC1
+      ASWA1 --> LWAP1
+      ASWA2 --> PC1
+      ASWA2 --> PC2
+      ASWA2 --> PH1
+      ASWA3 --> PH2
+      LWAP1 --> LAP1
+    end
 
-    ASWA1 --> LWAPA[LWAP-A]
-    ASWB1 --> LWAPB[LWAP-B]
-    DSWA1 --> WLC1[WLC1]
-    ASWB3 --> SRV1[SRV1]
+    subgraph OB[Office B]
+      DSWB1[DSW-B1]
+      DSWB2[DSW-B2]
+      ASWB1[ASW-B1]
+      ASWB2[ASW-B2]
+      ASWB3[ASW-B3]
+      LWAP2[LWAP2]
+      PC3[PC3]
+      PH3[Phone3]
+      SRV1[SRV1]
+      LAP2[Laptop2]
 
-    ASWA2 --> PCA[Office A PCs/Phones]
-    ASWB2 --> PCB[Office B PCs/Phones]
-    LWAPA --> WC1[Wireless Clients]
-    LWAPB --> WC2[Wireless Clients]
+      DSWB1 <-->|Po1 L2 LACP| DSWB2
+      DSWB1 --> ASWB1
+      DSWB1 --> ASWB2
+      DSWB2 --> ASWB3
+      DSWB2 --> ASWB1
+      DSWB2 --> ASWB2
+
+      ASWB1 --> LWAP2
+      ASWB2 --> PC3
+      ASWB2 --> PH3
+      ASWB3 --> SRV1
+      LWAP2 --> LAP2
+    end
+
+    CSW1 --> DSWA1
+    CSW2 --> DSWA1
+    CSW1 --> DSWA2
+    CSW2 --> DSWA2
+    CSW1 --> DSWB1
+    CSW2 --> DSWB1
+    CSW1 --> DSWB2
+    CSW2 --> DSWB2

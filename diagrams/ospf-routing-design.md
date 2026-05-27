@@ -1,9 +1,22 @@
 # OSPF Routing Design
 
-- OSPF process runs in area 0 across edge, core, and distribution routed links.
-- Loopback interfaces are used as stable router IDs.
-- User-facing SVIs are treated as passive where applicable.
-- Edge device injects default route into OSPF domain.
-- Routed point-to-point links minimize DR/BDR complexity and simplify failure domain behavior.
+## OSPF Domain
+- OSPF process: `1`
+- Backbone area: `0`
+- Routed links use point-to-point network type where configured.
+- R1 injects default route with `default-information originate`.
 
-> Validate exact interface network statements and adjacency matrix with `show ip ospf neighbor` and running configs.
+## Router IDs
+- R1: 10.0.0.76
+- CSW1: 10.0.0.77
+- CSW2: 10.0.0.78
+- DSW-A1: 10.0.0.79
+- DSW-A2: 10.0.0.80
+- DSW-B1: 10.0.0.81
+- DSW-B2: 10.0.0.82
+
+## Design Notes
+- R1 uses interface-level OSPF on Loopback0, G0/0, and G0/1.
+- CSW1 uses host-specific wildcard statements (`0.0.0.0`) for routed interfaces.
+- DSW-A1 and DSW-B1 use loopbacks for stable router IDs and set user VLAN SVIs as passive interfaces.
+- The design keeps user VLANs advertised while preventing unnecessary neighbor formation on access-facing segments.
