@@ -1,7 +1,6 @@
-# Verification Evidence Guide
+# Verification Evidence
 
-This folder stores **actual command output** captured from the lab. Do not fabricate outputs.
-
+This folder stores **actual command output** captured from the lab. 
 ## Command Checklist
 - `show vlan brief`
 - `show interfaces trunk`
@@ -19,8 +18,3 @@ This folder stores **actual command output** captured from the lab. Do not fabri
 - `show ip dhcp snooping`
 - `show ip arp inspection`
 - `show ip ssh`
-
-## Capture Notes
-- Keep raw output intact.
-- If redaction is required, redact only sensitive values.
-- Prefer one command per file or clearly separated command sections.
