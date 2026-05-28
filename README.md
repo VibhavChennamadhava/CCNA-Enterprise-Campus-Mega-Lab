@@ -720,7 +720,3 @@ ccna-enterprise-campus-mega-lab/
     └── command-reference.md
 ```
 
-Recommended additions to strengthen the repo:
-- Screenshots of `show ip ospf neighbor`, `show standby brief`, `show etherchannel summary`, `show ip nat translations`
-- WLC AP Summary and Client Summary screenshots
-- A labelled topology diagram exported from Packet Tracer or draw.io
